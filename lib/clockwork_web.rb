@@ -8,6 +8,9 @@ require "robustly"
 require "clockwork_web/engine"
 
 module ClockworkWeb
+  LAST_RUNS_KEY = "clockwork:last_runs"
+  DISABLED_KEY = "clockwork:disabled"
+
   class << self
     attr_accessor :clock_path
     attr_accessor :redis
@@ -15,7 +18,7 @@ module ClockworkWeb
 
   def self.enable(job)
     if redis
-      redis.srem("clockwork:disabled", job)
+      redis.srem(DISABLED_KEY, job)
       true
     else
       false
@@ -24,7 +27,7 @@ module ClockworkWeb
 
   def self.disable(job)
     if redis
-      redis.sadd("clockwork:disabled", job)
+      redis.sadd(DISABLED_KEY, job)
       true
     else
       false
@@ -33,7 +36,7 @@ module ClockworkWeb
 
   def self.enabled?(job)
     if redis
-      !redis.sismember("clockwork:disabled", job)
+      !redis.sismember(DISABLED_KEY, job)
     else
       true
     end
@@ -41,7 +44,7 @@ module ClockworkWeb
 
   def self.disabled_jobs
     if redis
-      Set.new(redis.smembers("clockwork:disabled"))
+      Set.new(redis.smembers(DISABLED_KEY))
     else
       Set.new
     end
@@ -49,7 +52,7 @@ module ClockworkWeb
 
   def self.last_runs
     if redis
-      Hash[ redis.hgetall("clockwork:last_runs").map{|job, timestamp| [job, Time.at(timestamp.to_i)] }.sort_by{|job, time| [time, job] } ]
+      Hash[ redis.hgetall(LAST_RUNS_KEY).map{|job, timestamp| [job, Time.at(timestamp.to_i)] }.sort_by{|job, time| [time, job] } ]
     else
       {}
     end
@@ -57,7 +60,7 @@ module ClockworkWeb
 
   def self.set_last_run(job)
     if redis
-      redis.hset("clockwork:last_runs", job, Time.now.to_i)
+      redis.hset(LAST_RUNS_KEY, job, Time.now.to_i)
     end
   end
 end
