@@ -41,12 +41,17 @@ module ClockworkWeb
 end
 
 module Clockwork
-  on(:before_run) do |t|
+  on(:before_run) do |event, t|
     run = true
     safely do
-      run = ClockworkWeb.enabled?(t.job)
-      if run && ClockworkWeb.redis
-        ClockworkWeb.redis.set("clockwork:last_run:#{t.job}", Time.now.to_i)
+      run = ClockworkWeb.enabled?(event.job)
+      if run
+        if ClockworkWeb.redis
+          ClockworkWeb.redis.set("clockwork:last_run:#{event.job}", Time.now.to_i)
+        end
+      else
+        manager.log "Skipping '#{event}'"
+        event.last = event.convert_timezone(t)
       end
     end
     run
