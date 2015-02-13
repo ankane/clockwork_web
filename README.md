@@ -47,6 +47,14 @@ authenticate :user, lambda {|user| user.admin? } do
 end
 ```
 
+## Customize
+
+Change clock path
+
+```ruby
+ClockworkWeb.clock_path = Rails.root.join("clock") # default
+```
+
 ## TODO
 
 - demo
