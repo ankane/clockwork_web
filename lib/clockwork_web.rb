@@ -9,6 +9,7 @@ require "clockwork_web/engine"
 
 module ClockworkWeb
   class << self
+    attr_accessor :clock_path
     attr_accessor :redis
   end
 
