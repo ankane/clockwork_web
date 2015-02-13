@@ -62,7 +62,7 @@
         </thead>
         <tbody>
           <% @events.each do |event| %>
-            <% enabled = ClockworkWeb.enabled?(event.job) %>
+            <% enabled = !@disabled[event.job] %>
             <tr class="<%= enabled ? "" : "disabled" %>">
               <td><%= event.job %></td>
               <td>
@@ -75,7 +75,7 @@
                   if __
                 <% end %>
               </td>
-              <td><%= last_run(event) %></td>
+              <td><%= last_run(@last_run[event.job]) %></td>
               <td><%= button_to enabled ? "Disable" : "Enable", home_job_path(job: event.job, enable: !enabled) %></td>
             </tr>
           <% end %>

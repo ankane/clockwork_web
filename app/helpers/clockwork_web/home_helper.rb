@@ -13,13 +13,9 @@ module ClockworkWeb
       end
     end
 
-    def last_run(event)
-      if ClockworkWeb.redis
-        # TODO get all events at once
-        timestamp = ClockworkWeb.redis.get("clockwork:last_run:#{event.job}")
-        if timestamp
-          time_ago_in_words(Time.at(timestamp.to_i))
-        end
+    def last_run(timestamp)
+      if timestamp
+        time_ago_in_words(Time.at(timestamp.to_i))
       end
     end
 
