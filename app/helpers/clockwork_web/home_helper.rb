@@ -23,5 +23,13 @@ module ClockworkWeb
       end
     end
 
+    def friendly_time_part(time_part)
+      if time_part
+        time_part.to_s.rjust(2, "0")
+      else
+        "**"
+      end
+    end
+
   end
 end

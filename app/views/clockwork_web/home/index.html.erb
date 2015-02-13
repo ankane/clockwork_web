@@ -67,17 +67,12 @@
               <td><%= event.job %></td>
               <td>
                 <%= friendly_period(event.instance_variable_get(:@period)) %>
-                <% if event.instance_variable_get(:@if) %>
-                  &ast;&ast;
-                <% end %>
                 <% at = event.instance_variable_get(:@at) %>
                 <% if at %>
-                  <div>
-                    <!-- TODO better format -->
-                    min: <%= at.instance_variable_get(:@min) %>
-                    hour: <%= at.instance_variable_get(:@hour) %>
-                    wday: <%= at.instance_variable_get(:@wday) %>
-                  </div>
+                  at <%= friendly_time_part(at.instance_variable_get(:@hour)) %>:<%= friendly_time_part(at.instance_variable_get(:@min)) %>
+                <% end %>
+                <% if event.instance_variable_get(:@if) %>
+                  if __
                 <% end %>
               </td>
               <td><%= last_run(event) %></td>
