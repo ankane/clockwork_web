@@ -24,7 +24,7 @@ mount ClockworkWeb::Engine, at: "clockwork"
 
 Be sure to secure the dashboard in production.
 
-To see the last run and disable jobs, hook up Redis.
+To see the last run and disable jobs, hook up Redis in an initializer.
 
 ```ruby
 ClockworkWeb.redis = Redis.new
