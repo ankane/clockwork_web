@@ -49,9 +49,15 @@ module ClockworkWeb
 
   def self.last_runs
     if redis
-      Hash[ redis.hgetall("clockwork:last_runs").map{|job, timestamp| [job, Time.at(timestamp.to_i)] } ]
+      Hash[ redis.hgetall("clockwork:last_runs").map{|job, timestamp| [job, Time.at(timestamp.to_i)] }.sort_by{|job, time| [time, job] } ]
     else
       {}
+    end
+  end
+
+  def self.set_last_run(job)
+    if redis
+      redis.hset("clockwork:last_runs", job, Time.now.to_i)
     end
   end
 end
@@ -62,9 +68,7 @@ module Clockwork
     safely do
       run = ClockworkWeb.enabled?(event.job)
       if run
-        if ClockworkWeb.redis
-          ClockworkWeb.redis.hset("clockwork:last_runs", event.job, Time.now.to_i)
-        end
+        ClockworkWeb.set_last_run(event.job)
       else
         manager.log "Skipping '#{event}'"
         event.last = event.convert_timezone(t)
