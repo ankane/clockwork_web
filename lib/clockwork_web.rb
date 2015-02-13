@@ -15,7 +15,7 @@ module ClockworkWeb
 
   def self.enable(job)
     if redis
-      redis.del("clockwork:disabled:#{job}")
+      redis.srem("clockwork:disabled", job)
       true
     else
       false
@@ -24,7 +24,7 @@ module ClockworkWeb
 
   def self.disable(job)
     if redis
-      redis.set("clockwork:disabled:#{job}", 1)
+      redis.sadd("clockwork:disabled", job)
       true
     else
       false
@@ -33,9 +33,17 @@ module ClockworkWeb
 
   def self.enabled?(job)
     if redis
-      !redis.exists("clockwork:disabled:#{job}")
+      !redis.sismember("clockwork:disabled", job)
     else
       true
+    end
+  end
+
+  def self.disabled_jobs
+    if redis
+      Set.new(redis.smembers("clockwork:disabled"))
+    else
+      Set.new
     end
   end
 end

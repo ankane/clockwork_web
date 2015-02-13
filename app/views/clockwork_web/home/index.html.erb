@@ -62,7 +62,7 @@
         </thead>
         <tbody>
           <% @events.each do |event| %>
-            <% enabled = !@disabled[event.job] %>
+            <% enabled = !@disabled.include?(event.job) %>
             <tr class="<%= enabled ? "" : "disabled" %>">
               <td><%= event.job %></td>
               <td>
