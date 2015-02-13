@@ -46,6 +46,14 @@ module ClockworkWeb
       Set.new
     end
   end
+
+  def self.last_runs
+    if redis
+      Hash[ redis.hgetall("clockwork:last_runs").map{|job, timestamp| [job, Time.at(timestamp.to_i)] } ]
+    else
+      {}
+    end
+  end
 end
 
 module Clockwork
@@ -55,7 +63,7 @@ module Clockwork
       run = ClockworkWeb.enabled?(event.job)
       if run
         if ClockworkWeb.redis
-          ClockworkWeb.redis.set("clockwork:last_run:#{event.job}", Time.now.to_i)
+          ClockworkWeb.redis.hset("clockwork:last_runs", event.job, Time.now.to_i)
         end
       else
         manager.log "Skipping '#{event}'"

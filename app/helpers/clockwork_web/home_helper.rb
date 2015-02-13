@@ -13,9 +13,9 @@ module ClockworkWeb
       end
     end
 
-    def last_run(timestamp)
-      if timestamp
-        time_ago_in_words(Time.at(timestamp.to_i))
+    def last_run(time)
+      if time
+        time_ago_in_words(time)
       end
     end
 
