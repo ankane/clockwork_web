@@ -10,11 +10,14 @@ require "clockwork_web/engine"
 module ClockworkWeb
   LAST_RUNS_KEY = "clockwork:last_runs"
   DISABLED_KEY = "clockwork:disabled"
+  HEARTBEAT_KEY = "clockwork:heartbeat"
 
   class << self
     attr_accessor :clock_path
     attr_accessor :redis
+    attr_accessor :monitor
   end
+  self.monitor = true
 
   def self.enable(job)
     if redis
@@ -63,9 +66,28 @@ module ClockworkWeb
       redis.hset(LAST_RUNS_KEY, job, Time.now.to_i)
     end
   end
+
+  def self.last_heartbeat
+    if redis
+      timestamp = redis.get(HEARTBEAT_KEY)
+      if timestamp
+        Time.at(timestamp.to_i)
+      end
+    end
+  end
+
+  def self.heartbeat
+    if redis
+      redis.set(HEARTBEAT_KEY, Time.now.to_i)
+    end
+  end
 end
 
 module Clockwork
+  on(:before_tick) do
+    ClockworkWeb.heartbeat if ClockworkWeb.monitor
+  end
+
   on(:before_run) do |event, t|
     run = true
     safely do
