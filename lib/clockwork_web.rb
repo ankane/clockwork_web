@@ -79,12 +79,14 @@ module ClockworkWeb
   def self.heartbeat
     if redis
       heartbeat = Time.now.to_i
-      prev_heartbeat = redis.getset(HEARTBEAT_KEY, heartbeat).to_i
-      if heartbeat == prev_heartbeat
-        # TODO debounce
-        # TODO try to surface hostnames when this condition is detected
-        # TODO hook to take action
-        redis.setex("clockwork:duplicates", 30, true)
+      if heartbeat % 10 == 0
+        prev_heartbeat = redis.getset(HEARTBEAT_KEY, heartbeat).to_i
+        if heartbeat == prev_heartbeat
+          # TODO debounce
+          # TODO try to surface hostnames when this condition is detected
+          # TODO hook to take action
+          redis.setex("clockwork:duplicates", 30, true)
+        end
       end
     end
   end
