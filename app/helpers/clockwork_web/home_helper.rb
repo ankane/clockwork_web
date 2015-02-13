@@ -3,9 +3,9 @@ module ClockworkWeb
 
     def friendly_period(period)
       if period % 1.day == 0
-        "#{period / 1.day} day"
+        pluralize(period / 1.day, "day")
       elsif period % 1.hour == 0
-        "#{period / 1.hour} hour"
+        pluralize(period / 1.hour, "hour")
       elsif period % 1.minute == 0
         "#{period / 1.minute} min"
       else
