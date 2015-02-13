@@ -67,6 +67,9 @@
               <td><%= event.job %></td>
               <td>
                 <%= friendly_period(event.instance_variable_get(:@period)) %>
+                <% if event.instance_variable_get(:@if) %>
+                  &ast;&ast;
+                <% end %>
                 <% at = event.instance_variable_get(:@at) %>
                 <% if at %>
                   <div>
