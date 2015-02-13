@@ -17,13 +17,15 @@ module ClockworkWeb
           ]
         end
 
-      keys = @events.flat_map{|e| ["clockwork:last_run:#{e.job}", "clockwork:disabled:#{e.job}"] }
-      values = ClockworkWeb.redis.mget(keys)
       @last_run = {}
       @disabled = {}
-      @events.each_with_index do |event, i|
-        @last_run[event.job] = values[i * 2]
-        @disabled[event.job] = values[i * 2 + 1]
+      if ClockworkWeb.redis
+        keys = @events.flat_map{|e| ["clockwork:last_run:#{e.job}", "clockwork:disabled:#{e.job}"] }
+        values = ClockworkWeb.redis.mget(keys)
+        @events.each_with_index do |event, i|
+          @last_run[event.job] = values[i * 2]
+          @disabled[event.job] = values[i * 2 + 1]
+        end
       end
     end
 
