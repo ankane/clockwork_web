@@ -57,6 +57,10 @@ ClockworkWeb.clock_path = Rails.root.join("clock") # default
 
 ## TODO
 
+- flag not completed jobs after 5 seconds
+- monitor (option, `true` by default)
+  - running
+  - duplicates
 - demo
 - better design
 
