@@ -3,7 +3,7 @@ module ClockworkWeb
     isolate_namespace ClockworkWeb
 
     initializer "clockwork_web" do |app|
-      ClockworkWeb.clock_path ||= Rails.root.join("clock")
+      ClockworkWeb.clock_path ||= Rails.root.join("clock").to_s
       require ClockworkWeb.clock_path
     end
   end

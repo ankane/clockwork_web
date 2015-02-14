@@ -51,17 +51,21 @@
   </head>
   <body>
     <div class="container">
-      <% if ClockworkWeb.monitor %>
-        <% if @last_heartbeat && @last_heartbeat > 30.seconds.ago %>
-          <p>Clockwork is running</p>
-        <% else %>
-          <p>
-            Clockwork is not running
-            <% if @last_heartbeat %>
-              <br />Last heartbeat: <%= time_ago_in_words(@last_heartbeat) %> ago
-            <% end %>
-          </p>
+      <% if ClockworkWeb.redis %>
+        <% if ClockworkWeb.monitor %>
+          <% if @last_heartbeat && @last_heartbeat > 30.seconds.ago %>
+            <p>Clockwork is running</p>
+          <% else %>
+            <p>
+              Clockwork is not running
+              <% if @last_heartbeat %>
+                <br />Last heartbeat: <%= time_ago_in_words(@last_heartbeat) %> ago
+              <% end %>
+            </p>
+          <% end %>
         <% end %>
+      <% else %>
+        <p>Add Redis for monitoring and disabling jobs</p>
       <% end %>
 
       <table>
@@ -89,7 +93,7 @@
                 <% end %>
               </td>
               <td><%= last_run(@last_runs[event.job]) %></td>
-              <td><%= button_to enabled ? "Disable" : "Enable", home_job_path(job: event.job, enable: !enabled) %></td>
+              <td><%= button_to enabled ? "Disable" : "Enable", home_job_path(job: event.job, enable: !enabled), disabled: !ClockworkWeb.redis %></td>
             </tr>
           <% end %>
         </tbody>
