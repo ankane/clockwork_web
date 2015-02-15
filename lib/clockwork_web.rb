@@ -81,7 +81,7 @@ module ClockworkWeb
       heartbeat = Time.now.to_i
       if heartbeat % 10 == 0
         prev_heartbeat = redis.getset(HEARTBEAT_KEY, heartbeat).to_i
-        if heartbeat <= prev_heartbeat
+        if prev_heartbeat >= heartbeat
           # TODO debounce
           # TODO try to surface hostnames when this condition is detected
           # TODO hook to take action
