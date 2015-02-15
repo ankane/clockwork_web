@@ -59,7 +59,7 @@
             <p>
               Clockwork is not running
               <% if @last_heartbeat %>
-                <br />Last heartbeat: <%= time_ago_in_words(@last_heartbeat) %> ago
+                - last heartbeat was <%= time_ago_in_words(@last_heartbeat) %> ago
               <% end %>
             </p>
           <% end %>

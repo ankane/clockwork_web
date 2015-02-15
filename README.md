@@ -52,7 +52,7 @@ end
 Change clock path
 
 ```ruby
-ClockworkWeb.clock_path = Rails.root.join("clock").to_s # default
+ClockworkWeb.clock_path = Rails.root.join("clock") # default
 ```
 
 ## TODO

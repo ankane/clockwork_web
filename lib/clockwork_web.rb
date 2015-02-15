@@ -95,6 +95,7 @@ end
 module Clockwork
   on(:before_tick) do
     ClockworkWeb.heartbeat if ClockworkWeb.monitor
+    true
   end
 
   on(:before_run) do |event, t|
