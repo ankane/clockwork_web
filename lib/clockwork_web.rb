@@ -11,6 +11,7 @@ module ClockworkWeb
   LAST_RUNS_KEY = "clockwork:last_runs"
   DISABLED_KEY = "clockwork:disabled"
   HEARTBEAT_KEY = "clockwork:heartbeat"
+  STATUS_KEY = "clockwork:status"
 
   class << self
     attr_accessor :clock_path
@@ -82,10 +83,7 @@ module ClockworkWeb
       if heartbeat % 10 == 0
         prev_heartbeat = redis.getset(HEARTBEAT_KEY, heartbeat).to_i
         if prev_heartbeat >= heartbeat
-          # TODO debounce
-          # TODO try to surface hostnames when this condition is detected
-          # TODO hook to take action
-          redis.setex("clockwork:status", 20, "multiple")
+          redis.setex(STATUS_KEY, 60, "multiple")
         end
       end
     end
@@ -96,7 +94,7 @@ module ClockworkWeb
   end
 
   def self.multiple?
-    redis && redis.get("clockwork:status") == "multiple"
+    redis && redis.get(STATUS_KEY) == "multiple"
   end
 end
 
