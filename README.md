@@ -2,11 +2,13 @@
 
 A web interface for [Clockwork](https://github.com/tomykaira/clockwork)
 
+[View the demo](https://clockwork-web.herokuapp.com/)
+
+[screenshot goes here]
+
 - see list of jobs
 - monitor jobs
 - disable jobs
-
-Screenshot, demo, and better UI coming soon
 
 ## Installation
 
@@ -70,7 +72,6 @@ ClockworkWeb.monitor = false
 
 ## TODO
 
-- flag not completed jobs after 5 seconds
 - demo
 - better design
 
