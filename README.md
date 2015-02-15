@@ -3,7 +3,7 @@
 A web interface for [Clockwork](https://github.com/tomykaira/clockwork)
 
 - see list of jobs
-- see last run
+- monitor jobs
 - disable jobs
 
 Screenshot, demo, and better UI coming soon
@@ -47,6 +47,13 @@ authenticate :user, lambda {|user| user.admin? } do
 end
 ```
 
+## Monitoring [master]
+
+```ruby
+ClockworkWeb.running?
+ClockworkWeb.multiple?
+```
+
 ## Customize
 
 Change clock path
@@ -55,12 +62,15 @@ Change clock path
 ClockworkWeb.clock_path = Rails.root.join("clock") # default
 ```
 
+Turn off monitoring
+
+```ruby
+ClockworkWeb.monitor = false
+```
+
 ## TODO
 
 - flag not completed jobs after 5 seconds
-- monitor (option, `true` by default)
-  - running
-  - duplicates
 - demo
 - better design
 

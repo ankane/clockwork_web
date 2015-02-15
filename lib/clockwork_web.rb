@@ -85,13 +85,17 @@ module ClockworkWeb
           # TODO debounce
           # TODO try to surface hostnames when this condition is detected
           # TODO hook to take action
-          redis.setex("clockwork:status", 30, "multiple")
+          redis.setex("clockwork:status", 20, "multiple")
         end
       end
     end
   end
 
-  def self.multiple_processes?
+  def self.running?
+    last_heartbeat && last_heartbeat > 60.seconds.ago
+  end
+
+  def self.multiple?
     redis && redis.get("clockwork:status") == "multiple"
   end
 end
