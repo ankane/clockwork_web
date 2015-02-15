@@ -74,6 +74,10 @@ ClockworkWeb.monitor = false
 
 - better design
 
+## History
+
+View the [changelog](CHANGELOG.md)
+
 ## Contributing
 
 Everyone is encouraged to help improve this project. Here are a few ways you can help:
