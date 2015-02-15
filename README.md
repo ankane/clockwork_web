@@ -1,6 +1,6 @@
 # Clockwork Web
 
-A web interface for [Clockwork](https://github.com/tomykaira/clockwork)
+A web interface for Clockwork
 
 [View the demo](https://clockwork-web.herokuapp.com/)
 
