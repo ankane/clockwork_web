@@ -4,11 +4,11 @@ A web interface for Clockwork
 
 [View the demo](https://clockwork-web.herokuapp.com/)
 
-[screenshot goes here]
-
 - see list of jobs
 - monitor jobs
 - disable jobs
+
+:tangerine: Battle-tested at [Instacart](https://www.instacart.com)
 
 ## Installation
 
