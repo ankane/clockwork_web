@@ -49,7 +49,7 @@ authenticate :user, lambda {|user| user.admin? } do
 end
 ```
 
-## Monitoring [master]
+## Monitoring
 
 ```ruby
 ClockworkWeb.running?
