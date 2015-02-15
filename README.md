@@ -72,7 +72,6 @@ ClockworkWeb.monitor = false
 
 ## TODO
 
-- demo
 - better design
 
 ## Contributing
