@@ -2,7 +2,7 @@ require "clockwork_web/version"
 
 # dependencies
 require "clockwork"
-require "robustly"
+require "safely_block"
 
 # engine
 require "clockwork_web/engine"
