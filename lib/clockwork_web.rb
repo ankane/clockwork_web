@@ -17,8 +17,10 @@ module ClockworkWeb
     attr_accessor :clock_path
     attr_accessor :redis
     attr_accessor :monitor
+    attr_accessor :running_threshold
   end
   self.monitor = true
+  self.running_threshold = 60 # seconds
 
   def self.enable(job)
     if redis
@@ -90,7 +92,7 @@ module ClockworkWeb
   end
 
   def self.running?
-    last_heartbeat && last_heartbeat > 60.seconds.ago
+    last_heartbeat && last_heartbeat > Time.now - running_threshold
   end
 
   def self.multiple?
