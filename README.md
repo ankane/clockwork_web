@@ -8,7 +8,7 @@ A web interface for Clockwork
 - monitor jobs
 - disable jobs
 
-:tangerine: Battle-tested at [Instacart](https://www.instacart.com)
+:tangerine: Battle-tested at [Instacart](https://www.instacart.com/opensource)
 
 ## Installation
 
