@@ -24,13 +24,14 @@ module ClockworkWeb
 
     def job
       job = params[:job]
-      if params[:enable] == "true"
+      enable = params[:enable] == "true"
+      if enable
         ClockworkWeb.enable(job)
       else
         ClockworkWeb.disable(job)
       end
+      ClockworkWeb.on_job_update.call(job: job, enable: enable, user: try(:current_user)) if ClockworkWeb.on_job_update
       redirect_to root_path
     end
-
   end
 end

@@ -18,6 +18,7 @@ module ClockworkWeb
     attr_accessor :redis
     attr_accessor :monitor
     attr_accessor :running_threshold
+    attr_accessor :on_job_update
   end
   self.monitor = true
   self.running_threshold = 60 # seconds
