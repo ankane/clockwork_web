@@ -19,7 +19,7 @@ module ClockworkWeb
 
       @last_runs = ClockworkWeb.last_runs
       @disabled = ClockworkWeb.disabled_jobs
-      @last_heartbeat = ClockworkWeb.last_heartbeat
+      @last_heartbeat = ClockworkWeb.last_heartbeat.in_time_zone
     end
 
     def job
