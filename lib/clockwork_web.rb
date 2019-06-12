@@ -2,7 +2,7 @@ require "clockwork_web/version"
 
 # dependencies
 require "clockwork"
-require "safely_block"
+require "safely_block/core"
 
 # engine
 require "clockwork_web/engine"
@@ -109,7 +109,7 @@ module Clockwork
 
   on(:before_run) do |event, t|
     run = true
-    safely do
+    Safely.safely do
       run = ClockworkWeb.enabled?(event.job)
       if run
         ClockworkWeb.set_last_run(event.job)
