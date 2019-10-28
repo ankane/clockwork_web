@@ -1,4 +1,4 @@
-## 0.0.6 [unreleased]
+## 0.1.0
 
 - Added `on_job_update` hook
 

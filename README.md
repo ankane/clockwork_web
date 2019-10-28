@@ -70,10 +70,6 @@ Turn off monitoring
 ClockworkWeb.monitor = false
 ```
 
-## TODO
-
-- better design
-
 ## History
 
 View the [changelog](CHANGELOG.md)
