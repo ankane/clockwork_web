@@ -2,7 +2,7 @@
 
 A web interface for Clockwork
 
-[View the demo](https://clockwork-web.herokuapp.com/)
+[View the demo](https://clockwork.dokkuapp.com/)
 
 - see list of jobs
 - monitor jobs
