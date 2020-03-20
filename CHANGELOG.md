@@ -1,3 +1,7 @@
+## 0.1.1 (2020-03-19)
+
+- Fixed load error
+
 ## 0.1.0 (2019-10-28)
 
 - Added `on_job_update` hook
