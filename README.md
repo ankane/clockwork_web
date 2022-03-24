@@ -15,7 +15,7 @@ A web interface for Clockwork
 Add this line to your application’s Gemfile:
 
 ```ruby
-gem 'clockwork_web'
+gem "clockwork_web"
 ```
 
 And add it to your `config/routes.rb`.
@@ -44,7 +44,7 @@ ENV["CLOCKWORK_PASSWORD"] = "secret"
 #### Devise
 
 ```ruby
-authenticate :user, lambda {|user| user.admin? } do
+authenticate :user, ->(user) { user.admin? } do
   mount ClockworkWeb::Engine, at: "clockwork"
 end
 ```
