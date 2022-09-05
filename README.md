@@ -89,4 +89,5 @@ To get started with development:
 git clone https://github.com/ankane/clockwork_web.git
 cd clockwork_web
 bundle install
+bundle exec rake test
 ```
