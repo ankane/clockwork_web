@@ -3,6 +3,8 @@ module ClockworkWeb
     layout false
     helper ClockworkWeb::HomeHelper
 
+    protect_from_forgery with: :exception
+
     http_basic_authenticate_with name: ENV["CLOCKWORK_USERNAME"], password: ENV["CLOCKWORK_PASSWORD"] if ENV["CLOCKWORK_PASSWORD"]
 
     def index
