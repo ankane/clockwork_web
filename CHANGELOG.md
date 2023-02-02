@@ -1,7 +1,3 @@
-## 0.2.0 (unreleased)
-
-- Dropped support for Ruby < 2.7 and Rails < 6
-
 ## 0.1.1 (2020-03-19)
 
 - Fixed load error
