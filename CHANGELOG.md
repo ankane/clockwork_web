@@ -1,4 +1,4 @@
-## 0.1.2 (unreleased)
+## 0.1.2 (2023-02-01)
 
 - Fixed CSRF vulnerability with Rails < 5.2 - [more info](https://github.com/ankane/clockwork_web/issues/4)
 
