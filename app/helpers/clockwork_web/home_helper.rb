@@ -15,7 +15,7 @@ module ClockworkWeb
 
     def last_run(time)
       if time
-        time_ago_in_words(time)
+        "#{time_ago_in_words(time, include_seconds: true)} ago"
       end
     end
 
