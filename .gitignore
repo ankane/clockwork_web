@@ -12,3 +12,4 @@
 *.o
 *.a
 *.log
+/test/internal/tmp/

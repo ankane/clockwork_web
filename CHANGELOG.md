@@ -1,3 +1,7 @@
+## 0.2.0 (unreleased)
+
+- Dropped support for Ruby < 2.7 and Rails < 6
+
 ## 0.1.2 (2023-02-01)
 
 - Fixed CSRF vulnerability with Rails < 5.2 - [more info](https://github.com/ankane/clockwork_web/issues/4)
