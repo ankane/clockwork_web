@@ -10,6 +10,8 @@ A web interface for Clockwork
 
 :tangerine: Battle-tested at [Instacart](https://www.instacart.com/opensource)
 
+[![Build Status](https://github.com/ankane/clockwork_web/workflows/build/badge.svg?branch=master)](https://github.com/ankane/clockwork_web/actions)
+
 ## Installation
 
 Add this line to your application’s Gemfile:
