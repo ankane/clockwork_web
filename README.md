@@ -1,6 +1,6 @@
 # Clockwork Web
 
-A web interface for Clockwork
+A web interface for [Clockwork](https://github.com/Rykian/clockwork)
 
 [View the demo](https://clockwork.dokkuapp.com/)
 
