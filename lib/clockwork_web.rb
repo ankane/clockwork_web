@@ -59,7 +59,7 @@ module ClockworkWeb
 
   def self.last_runs
     if redis
-      Hash[ redis.hgetall(LAST_RUNS_KEY).map{|job, timestamp| [job, Time.at(timestamp.to_i)] }.sort_by{|job, time| [time, job] } ]
+      Hash[redis.hgetall(LAST_RUNS_KEY).map { |job, timestamp| [job, Time.at(timestamp.to_i)] }.sort_by { |job, time| [time, job] }]
     else
       {}
     end

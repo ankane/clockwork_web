@@ -1,6 +1,5 @@
 module ClockworkWeb
   module HomeHelper
-
     def friendly_period(period)
       if period % 1.day == 0
         pluralize(period / 1.day, "day")
@@ -26,6 +25,5 @@ module ClockworkWeb
         "**"
       end
     end
-
   end
 end
