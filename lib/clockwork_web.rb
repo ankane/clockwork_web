@@ -1,11 +1,10 @@
-require "clockwork_web/version"
-
 # dependencies
 require "clockwork"
 require "safely/core"
 
-# engine
-require "clockwork_web/engine"
+# modules
+require_relative "clockwork_web/engine"
+require_relative "clockwork_web/version"
 
 module ClockworkWeb
   LAST_RUNS_KEY = "clockwork:last_runs"
