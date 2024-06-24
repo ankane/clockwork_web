@@ -1,4 +1,4 @@
-## 0.3.0 (unreleased)
+## 0.3.0 (2024-06-24)
 
 - Dropped support for Clockwork < 3
 - Dropped support for Ruby < 3.1 and Rails < 6.1
