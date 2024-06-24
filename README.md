@@ -10,7 +10,7 @@ A web interface for [Clockwork](https://github.com/Rykian/clockwork)
 
 :tangerine: Battle-tested at [Instacart](https://www.instacart.com/opensource)
 
-[![Build Status](https://github.com/ankane/clockwork_web/workflows/build/badge.svg?branch=master)](https://github.com/ankane/clockwork_web/actions)
+[![Build Status](https://github.com/ankane/clockwork_web/actions/workflows/build.yml/badge.svg)](https://github.com/ankane/clockwork_web/actions)
 
 ## Installation
 
