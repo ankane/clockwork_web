@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 3.1"
 
-  spec.add_dependency "clockwork"
+  spec.add_dependency "clockwork", ">= 3"
   spec.add_dependency "safely_block", ">= 0.4"
   spec.add_dependency "railties", ">= 6.1"
 end
