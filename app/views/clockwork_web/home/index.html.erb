@@ -5,7 +5,7 @@
 
     <meta charset="utf-8" />
 
-    <style>
+    <%= content_tag :style, nonce: content_security_policy_nonce do %>
       body {
         font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
         margin: 0;
@@ -47,7 +47,11 @@
       .disabled {
         background-color: pink;
       }
-    </style>
+
+      .width-15 {
+        width: 15%;
+      }
+    <% end %>
   </head>
   <body>
     <div class="container">
@@ -74,9 +78,9 @@
         <thead>
           <tr>
             <th>Job</th>
-            <th style="width: 15%;">Period</th>
-            <th style="width: 15%;">Last Run</th>
-            <th style="width: 15%;">Action</th>
+            <th class="width-15">Period</th>
+            <th class="width-15">Last Run</th>
+            <th class="width-15">Action</th>
           </tr>
         </thead>
         <tbody>
