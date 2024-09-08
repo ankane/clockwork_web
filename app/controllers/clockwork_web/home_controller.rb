@@ -32,7 +32,7 @@ module ClockworkWeb
       else
         ClockworkWeb.disable(job)
       end
-      ClockworkWeb.on_job_update.call(job: job, enable: enable, user: try(:current_user)) if ClockworkWeb.on_job_update
+      ClockworkWeb.on_job_update.call(job: job, enable: enable, user: try(ClockworkWeb.user_method)) if ClockworkWeb.on_job_update
       redirect_to root_path
     end
   end
