@@ -3,7 +3,7 @@ require "clockwork"
 require "safely/core"
 
 # modules
-require_relative "clockwork_web/engine"
+require_relative "clockwork_web/engine" if defined?(Rails)
 require_relative "clockwork_web/version"
 
 module ClockworkWeb
