@@ -51,6 +51,10 @@
       .width-15 {
         width: 15%;
       }
+
+      .button-form {
+        display: inline-block;
+      }
     <% end %>
   </head>
   <body>
@@ -80,7 +84,7 @@
             <th>Job</th>
             <th class="width-15">Period</th>
             <th class="width-15">Last Run</th>
-            <th class="width-15">Action</th>
+            <th class="width-15">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -99,7 +103,10 @@
                 <% end %>
               </td>
               <td><%= last_run(@last_runs[event.job]) %></td>
-              <td><%= button_to enabled ? "Disable" : "Enable", home_job_path(job: event.job, enable: !enabled), disabled: !ClockworkWeb.redis %></td>
+              <td>
+                <%= button_to enabled ? "Disable" : "Enable", home_job_path(job: event.job, enable: !enabled), disabled: !ClockworkWeb.redis, form_class: 'button-form' %>
+                <%= button_to "Run now", home_execute_path(job: event.job), disabled: !ClockworkWeb.redis, form_class: 'button-form' %>
+              </td>
             </tr>
           <% end %>
         </tbody>
