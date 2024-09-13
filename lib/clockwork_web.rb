@@ -84,7 +84,7 @@ module ClockworkWeb
   def self.heartbeat
     if redis
       heartbeat = Time.now.to_i
-      if heartbeat % 10 == 0
+      if heartbeat % 10 == 0 # every 10 seconds
         prev_heartbeat = redis.getset(HEARTBEAT_KEY, heartbeat).to_i
         if prev_heartbeat >= heartbeat
           redis.setex(STATUS_KEY, 60, "multiple")
@@ -110,15 +110,19 @@ module Clockwork
 
   on(:before_run) do |event, t|
     run = true
+
     Safely.safely do
       run = ClockworkWeb.enabled?(event.job)
-      if run
-        ClockworkWeb.set_last_run(event.job)
-      else
+      unless run
         manager.log "Skipping '#{event}'"
         event.last = event.convert_timezone(t)
       end
     end
+
     run
+  end
+
+  on(:after_run) do |event, _t|
+    ClockworkWeb.set_last_run(event.job) if ClockworkWeb.enabled?(event.job)
   end
 end

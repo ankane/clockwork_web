@@ -35,5 +35,16 @@ module ClockworkWeb
       ClockworkWeb.on_job_update.call(job: job, enable: enable, user: try(ClockworkWeb.user_method)) if ClockworkWeb.on_job_update
       redirect_to root_path
     end
+
+    def execute
+      job = params[:job]
+
+      event = Clockwork.manager.events.find { _1.job == params[:job] }
+
+      event.run(Time.now)
+      ClockworkWeb.set_last_run(event.job)
+
+      redirect_to root_path
+    end
   end
 end
