@@ -25,5 +25,21 @@ module ClockworkWeb
         "**"
       end
     end
+
+    def friendly_extract_source_from_callable(callable, with_affixes: true)
+      source = RubyVM::AbstractSyntaxTree.of(callable, keep_script_lines: true).source
+      return '-' unless source
+
+      source.strip!
+      return source if with_affixes
+
+      source.tap do |source|
+        source.delete_prefix!('{')
+        source.delete_suffix!('}')
+
+        source.delete_prefix!('do')
+        source.delete_suffix!('end')
+      end
+    end
   end
 end

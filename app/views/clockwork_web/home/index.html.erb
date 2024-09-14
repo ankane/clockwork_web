@@ -79,6 +79,7 @@
           <tr>
             <th>Job</th>
             <th class="width-15">Period</th>
+            <th class="width-15">Implementation block</th>
             <th class="width-15">Last Run</th>
             <th class="width-15">Action</th>
           </tr>
@@ -96,6 +97,16 @@
                 <% end %>
                 <% if event.instance_variable_get(:@if) %>
                   if __
+                <% end %>
+              </td>
+              <td>
+                <% if block = event.instance_variable_get(:@block) %>
+                  <details>
+                    <summary>Click to see implementation</summary>
+                    {
+                    <%= friendly_extract_source_from_callable(block, with_affixes: false) %>
+                    }
+                  </details>
                 <% end %>
               </td>
               <td><%= last_run(@last_runs[event.job]) %></td>
