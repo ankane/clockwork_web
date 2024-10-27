@@ -30,3 +30,17 @@
 ## 0.0.4 (2015-03-15)
 
 - Better monitoring for multiple processes
+
+## 0.0.3 (2015-02-14)
+
+- Added `running?` method
+- Added `multiple?` method
+- Added `monitor` option
+
+## 0.0.2 (2015-02-13)
+
+- Added `clock_path` option
+
+## 0.0.1 (2015-02-13)
+
+- First release
