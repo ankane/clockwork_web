@@ -1,11 +1,11 @@
 module ClockworkWeb
   class HomeController < ActionController::Base
-    layout false
-    helper ClockworkWeb::HomeHelper
+    http_basic_authenticate_with name: ENV["CLOCKWORK_USERNAME"], password: ENV["CLOCKWORK_PASSWORD"] if ENV["CLOCKWORK_PASSWORD"]
 
     protect_from_forgery with: :exception
 
-    http_basic_authenticate_with name: ENV["CLOCKWORK_USERNAME"], password: ENV["CLOCKWORK_PASSWORD"] if ENV["CLOCKWORK_PASSWORD"]
+    layout false
+    helper ClockworkWeb::HomeHelper
 
     def index
       @events =
